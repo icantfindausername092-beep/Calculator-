@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marshmallow Calculator</title>
+    <style>
+        body {
+            background-color: #ffeef5;
+            font-family: Georgia, 'Times New Roman', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .calculator {
+            background: white;
+            padding: 25px;
+            border-radius: 30px;
+            box-shadow: 0 8px 20px rgba(255, 182, 193, 0.5);
+            border: 3px solid #ffb6c1;
+            width: 280px;
+        }
+        h1 {
+            color: #ff8fab;
+            text-align: center;
+            margin: 0 0 15px 0;
+            font-size: 24px;
+        }
+        .marshmallow {
+            text-align: center;
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+        #display {
+            width: 100%;
+            height: 50px;
+            background-color: #fff9fc;
+            border: 2px solid #ffd6e7;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            font-size: 24px;
+            text-align: right;
+            padding: 10px;
+            box-sizing: border-box;
+            color: #ff7096;
+            overflow: hidden;
+        }
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+        button {
+            padding: 15px;
+            font-size: 18px;
+            border: none;
+            border-radius: 15px;
+            background-color: #ffd6e7;
+            color: #ff7096;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #ffb6c1;
+        }
+        .operator {
+            background-color: #ff8fab;
+            color: white;
+        }
+        .operator:hover {
+            background-color: #ff7096;
+        }
+        .equals {
+            background-color: #ff8fab;
+            color: white;
+            grid-column: span 2;
+        }
+        .clear {
+            background-color: #ffa8c5;
+            color: white;
+        }
+    </style>
+</head><body>
+    <div class="calculator">
+        <div class="marshmallow">☁️</div>
+        <h1>Calcu ni Miks</h1>
+        <div id="display">0</div>
+        <div class="buttons">
+            <button class="clear" onclick="clearDisplay()">C</button>
+            <button onclick="appendToDisplay('/')" class="operator">/</button>
+            <button onclick="appendToDisplay('*')" class="operator">*</button>
+            <button onclick="deleteLast()">⌫</button>
+            
+            <button onclick="appendToDisplay('7')">7</button>
+            <button onclick="appendToDisplay('8')">8</button>
+            <button onclick="appendToDisplay('9')">9</button>
+            <button onclick="appendToDisplay('-')" class="operator">-</button>
+            
+            <button onclick="appendToDisplay('4')">4</button>
+            <button onclick="appendToDisplay('5')">5</button>
+            <button onclick="appendToDisplay('6')">6</button>
+            <button onclick="appendToDisplay('+')" class="operator">+</button>
+            
+            <button onclick="appendToDisplay('1')">1</button>
+            <button onclick="appendToDisplay('2')">2</button>
+            <button onclick="appendToDisplay('3')">3</button>
+            <button onclick="appendToDisplay('.')">.</button>
+            
+            <button onclick="appendToDisplay('0')">0</button>
+            <button onclick="calculate()" class="equals">=</button>
+        </div>
+    </div>    <script>
+        let display = document.getElementById('display');
+        
+        function appendToDisplay(value) {
+            if (display.innerText === '0' && value !== '.') {
+                display.innerText = value;
+            } else {
+                display.innerText += value;
+            }
+        }
+        
+        function clearDisplay() {
+            display.innerText = '0';
+        }
+        
+        function deleteLast() {
+            if (display.innerText.length === 1) {
+                display.innerText = '0';
+            } else {
+                display.innerText = display.innerText.slice(0, -1);
+            }
+        }
+        
+        function calculate() {
+            try {
+                display.innerText = eval(display.innerText);
+            } catch {
+                display.innerText = 'Error';
+            }
+        }
+    </script>
+</body>
+</html>
